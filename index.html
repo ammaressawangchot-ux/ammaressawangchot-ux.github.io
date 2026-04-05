@@ -87,13 +87,13 @@
         .about-text {
             flex: 1;
         }
-        .thai-distributed {
-            text-align: justify;
-            text-justify: inter-word;
+       .thai-distributed {
+            text-align: left; /* เปลี่ยนเป็นชิดซ้ายเพื่อให้ตัดคำภาษาไทยสวยขึ้น */
             font-size: 1.1em;
             line-height: 1.8;
             color: #ddd;
-            text-indent: 2em; /* ย่อหน้า */
+            text-indent: 2em;
+            word-break: break-word; /* ป้องกันไม่ให้คำยาวทะลุกรอบ */
         }
 
         /* Grid สำหรับ Video และ Image */
