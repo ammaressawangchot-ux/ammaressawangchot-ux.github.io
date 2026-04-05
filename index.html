@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ammares Sawangchot - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
             --bg-color: #0b0b0b;
             --text-color: #e0e0e0;
-            --accent-color: #d80000; /* สีแดงสไตล์โรงหนัง */
-            --box-bg: #1a1a1a;
+            --accent-color: #E50914; /* สีแดงสไตล์โรงภาพยนตร์ */
+            --box-bg: #141414;
         }
         body {
             background-color: var(--bg-color);
@@ -18,228 +20,177 @@
             font-family: 'Prompt', sans-serif;
             margin: 0;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
+        /* แถบเมนูด้านบน */
         header {
             background: linear-gradient(to bottom, #2a0000, #0b0b0b);
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
-            border-bottom: 3px solid var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        h1 { margin: 0; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        nav { margin-top: 20px; }
+        h1 { margin: 0; color: #fff; text-transform: uppercase; letter-spacing: 2px; font-size: 1.8em; }
+        nav { margin-top: 15px; }
         nav a {
-            color: #fff;
+            color: #ccc;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 12px;
             font-weight: 600;
             transition: color 0.3s;
+            font-size: 0.95em;
         }
         nav a:hover { color: var(--accent-color); }
+        
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         .section-title {
-            font-size: 2em;
+            font-size: 1.8em;
             color: #fff;
             border-left: 5px solid var(--accent-color);
             padding-left: 15px;
-            margin: 50px 0 30px 0;
+            margin: 60px 0 30px 0;
             text-transform: uppercase;
         }
+
+        /* กล่อง About Me พร้อมรูปโปรไฟล์ */
         .about-box {
             background: var(--box-bg);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(216, 0, 0, 0.15);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.1);
             border: 1px solid #333;
         }
-        .video-grid {
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        @media (min-width: 900px) {
+            .about-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+        /* ตั้งค่ารูปโปรไฟล์ให้รองรับภาพแนวนอน */
+        .profile-img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 8px;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3);
+            flex-shrink: 0; 
+        }
+        .about-text {
+            flex: 1;
+        }
+        .thai-distributed {
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #ddd;
+            text-indent: 2em; /* ย่อหน้า */
+        }
+
+        /* Grid สำหรับ Video และ Image */
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
-        .video-item {
+        .card {
             background: var(--box-bg);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #333;
+            border: 1px solid #222;
         }
-        .video-item:hover {
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(216, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.2);
             border-color: var(--accent-color);
         }
+        
+        /* วิดีโอ (16:9) */
         .video-wrap {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; 
             height: 0;
+            background: #000;
         }
         .video-wrap iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+        .card-info { padding: 15px; }
+        .card-title { font-size: 1em; color: #fff; margin: 0 0 5px 0; font-weight: 600; }
+        .card-desc { font-size: 0.85em; color: #aaa; margin: 0; }
+
+        /* การ์ดภาพนิ่ง (ลิงก์ออก) */
+        .photo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px;
+            background: linear-gradient(45deg, #1a0000, #330000);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .photo-card:hover { background: var(--accent-color); color: #fff; }
+
+        /* แกลเลอรีเบื้องหลังการทำงาน */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item img {
             width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .video-info { padding: 15px; }
-        .video-title { font-size: 1.1em; color: var(--accent-color); margin: 0 0 5px 0; font-weight: 600; }
-        .video-role { font-size: 0.9em; color: #aaa; margin: 0; }
-        .contact-box {
-            background: var(--box-bg);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
             border: 1px solid #333;
+            transition: 0.3s;
         }
-        .contact-box p { margin: 10px 0; font-size: 1.1em; }
-        .contact-box span { color: var(--accent-color); font-weight: 600; }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #050505;
-            color: #555;
-            margin-top: 50px;
+        .gallery-item img:hover { border-color: var(--accent-color); transform: scale(1.02); }
+        
+        .drive-link-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
         }
-    </style>
-</head>
-<body>
+        .drive-link-btn:hover { background-color: #b0060f; }
 
-    <header>
-        <h1>Ammares Sawangchot</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#shortfilm">หนังสั้น</a>
-            <a href="#youtube">YouTube</a>
-            <a href="#photo">ภาพนิ่ง</a>
-            <a href="#short">Short</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <section id="about">
-            <div class="about-box">
-                <p>สวัสดีครับ ผม <strong>นายอมเรศ สว่างโชติ</strong> ปัจจุบันเป็นนักศึกษาชั้นปีที่ 3 วิทยาลัยนิเทศศาสตร์ สาขาภาพยนตร์และสื่อดิจิทัล มหาวิทยาลัยราชภัฏสวนสุนันทา</p>
-                <p>ผมมีประสบการณ์ด้านการผลิตสื่อออนไลน์และโปรดักชันภาพยนตร์มามากกว่า 5 ปี โดยผ่านงานมาแล้วหลากหลายรูปแบบ ตั้งแต่โปรเจกต์ช่องยูทูประดับล้านซับ ไปจนถึงกองถ่ายภาพยนตร์ ในตำแหน่งผู้กำกับ, ผู้กำกับภาพ (DOP), โปรดิวเซอร์ และนักตัดต่อวิดีโอ</p>
-                <p>ผมมีความคุ้นเคยกับกระบวนการทำงานทั้งระบบ ตั้งแต่การจัดเตรียมเอกสาร Pre-Production ไปจนถึง Post-Production ด้วยโปรแกรม <strong>Adobe Premiere Pro, After Effects, Photoshop และ DaVinci Resolve</strong> สามารถทำงานร่วมกับ Influencer และทำงานเป็นทีมได้เป็นอย่างดี โดยตอนนี้ผมกำลังมองหาโอกาสในการฝึกงานเพื่อเติบโตและพัฒนาความคิดสร้างสรรค์ในสายงานโปรดักชันอย่างมืออาชีพครับ</p>
-            </div>
-        </section>
-
-        <section id="shortfilm">
-            <h2 class="section-title">หนังสั้น & ตัวอย่างภาพยนตร์ (Short Films)</h2>
-            <div class="video-grid">
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/3a_Pup1iVQw" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ผลงานหนังสั้น</h3>
-                        <p class="video-role">หน้าที่: ผู้กำกับ, เขียนบท, ตัดต่อ</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQW4KYJo0O8" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ผลงานตัวอย่างหนัง 1</h3>
-                        <p class="video-role">หน้าที่: ผู้กำกับ, เขียนบท, ตัดต่อ, กำกับภาพ (DOP)</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/vVenYKfioto" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ผลงานตัวอย่างหนัง 2</h3>
-                        <p class="video-role">หน้าที่: เขียนบท, ตัดต่อ, กำกับภาพ (DOP)</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/zclkBMRVFa0" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ผลงานหนังสั้น</h3>
-                        <p class="video-role">หน้าที่: ตัดต่อ, กำกับภาพ (DOP)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="youtube">
-            <h2 class="section-title">YouTube Content (รายการ, MV, สปอยหนัง)</h2>
-            <div class="video-grid">
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/IMpsGG_Zs6M" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">งานคลิปหนังสั้น เจน AI</h3>
-                        <p class="video-role">วิดีโอโปรเจกต์พิเศษ</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/Wl3oGIHpv4o" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">คลิปเกมเพลย์</h3>
-                        <p class="video-role">รายการเกม</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9OuggCYNiR8" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">COVER MV 1</h3>
-                        <p class="video-role">หน้าที่: ผู้กำกับ, ตัดต่อ, กำกับภาพ (DOP)</p>
-                    </div>
-                </div>
-                
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/3rSpvj2Efbw" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ABC - POLYCAT | COVER MV</h3>
-                        <p class="video-role">หน้าที่: ตัดต่อ, กำกับภาพ (DOP) [MADER PRODUCTION]</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ClAJE6gdC5o" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">ไอ้โฮโมเซเปี้ยน หยิบหย่ง!!!</h3>
-                        <p class="video-role">ผลงานช่อง ZBD</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ZpN1YhZEBqk" allowfullscreen></iframe></div>
-                    <div class="video-info">
-                        <h3 class="video-title">เด็กบ้านนอกมีพลังแอบกอบกู้หมู่บ้านชนบท</h3>
-                        <p class="video-role">ผลงานสปอยหนัง</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="photo">
-            <h2 class="section-title">ภาพนิ่ง (Photography)</h2>
-            <div class="about-box" style="text-align: center; color: #777;">
-                <p><i>(พื้นที่สำหรับใส่แกลเลอรีรูปภาพในอนาคต สามารถนำโค้ดภาพมาใส่ที่ส่วนนี้ได้)</i></p>
-            </div>
-        </section>
-
-        <section id="short">
-            <h2 class="section-title">วิดีโอแนวตั้ง (Shorts)</h2>
-            <div class="about-box" style="text-align: center; color: #777;">
-                <p><i>(พื้นที่สำหรับใส่วิดีโอสั้นแนวตั้งจาก TikTok, YouTube Shorts หรือ Reels)</i></p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">ติดต่อ (Contact)</h2>
-            <div class="contact-box">
-                <p><span>Email:</span> ammaressawangchot@gmail.com</p>
-                <p><span>เบอร์โทรศัพท์:</span> 065-964-7576</p>
-                <p><span>Facebook:</span> Ammares Sawangchot</p>
-                <p><span>Instagram:</span> Filmmpn</p>
-                <p><span>Line ID:</span> Filmmpn</p>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        &copy; 2026 Ammares Sawangchot. All Rights Reserved.
-    </footer>
-
-</body>
-</html>
+        /* ไอคอนติดต่อ */
+        .contact-box { text-align: center; margin-top: 20px; }
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .contact-item {
+            background: var(--box-bg);
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 120px;
+            border: 1
