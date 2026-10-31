@@ -204,6 +204,26 @@
         .contact-item span { font-size: 0.9em; margin-top: 5px; }
 
         footer { text-align: center; padding: 20px; background: #050505; color: #555; margin-top: 50px; font-size: 0.9em; }
+        /* สไตล์ปุ่มรางวัลต่างๆ */
+        .canva-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background-color: var(--accent-color, #e50914);
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .canva-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(229, 9, 20, 0.4);
+            background-color: #ff1e27;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -224,9 +244,27 @@
         
         <section id="about">
             <h2 class="section-title">About Me</h2>
-            <div class="about-box">
-                <div class="about-content">
-                    <img src="profile.jpg" alt="Ammares Sawangchot" class="profile-img">
+           <div class="about-box">
+            <div class="about-content">
+                <img src="profile.jpg" alt="Ammares Sawangchot" class="profile-img">
+                
+                <!-- ปุ่มรางวัลต่างๆ วางต่อใต้รูปภาพตรงนี้ -->
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://canva.link/9blb3qjuyzuptto" target="_blank" rel="noopener noreferrer" class="canva-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path>
+                        </svg>
+                        รางวัลต่างๆ
+                    </a>
+                </div>
+
+            </div> <!-- ปิด div class="about-content" -->
+        </div> <!-- ปิด div class="about-box" -->
                     
                     <div class="about-text">
                         <div class="thai-distributed">
